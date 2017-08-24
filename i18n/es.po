@@ -1,0 +1,55 @@
+#: init/nant-service.js
+msgid "NAnt task"
+msgstr "Tarea de NAnt"
+
+#: init/nant-service.js
+msgid "No server selected"
+msgstr "Ningún servidor seleccionado"
+
+#: init/nant-service.js
+msgid "No option selected"
+msgstr "Ninguna opción seleccionada"
+
+#: init/nant-service.js
+msgid "Starting NAnt task"
+msgstr "Comanzando tarea de NAnt"
+
+#: init/nant-service.js
+msgid "NAnt task finished"
+msgstr "Tarea de NAnt finalizada"
+
+#: public/form/nant-service-form.js
+msgid "Server"
+msgstr "Servidor"
+
+#: public/form/nant-service-form.js
+msgid "Command"
+msgstr "Comando"
+
+#: public/form/nant-service-form.js
+msgid "Build project"
+msgstr "Construir proyecto"
+
+#: public/form/nant-service-form.js
+msgid "Clean project"
+msgstr "Limpiar proyecto"
+
+#: public/form/nant-service-form.js
+msgid "Project help"
+msgstr "Ayuda del proyecto"
+
+#: public/form/nant-service-form.js
+msgid "Search parent directories for build file"
+msgstr "Buscar en los directorios del proyecto por el archivo de construcción"
+
+#: public/form/nant-service-form.js
+msgid "Custom command"
+msgstr "Comando personalizado"
+
+#: public/form/nant-service-form.js
+msgid "Custom commands or arguments"
+msgstr "Comando personalizado o argumentos"
+
+#: public/form/nant-service-form.js
+msgid "Project Path"
+msgstr "Ruta del Proyecto"
