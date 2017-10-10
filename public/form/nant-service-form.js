@@ -4,7 +4,7 @@
 
     var nantServerCombo = Cla.ui.ciCombo({
         name: 'nantServer',
-        class: 'generic_server',
+        role: 'Server',
         fieldLabel: _('Server'),
         value: data.nantServer || '',
         allowBlank: false,
