@@ -1,0 +1,9 @@
+name: Clarive NAnt Plugin
+description: The NAnt plugin will allow you to launch NAnt commands for your .NET projects from a Clarive instance.
+version: 1.0
+icon: https://github.com/clarive/cla-nant-plugin/public/icon/nant.svg
+url: https://github.com/clarive/cla-nant-plugin
+requires:
+  - clarive_version: 6.8 <= version
+dependencies:
+  - cla-nant-plugin
