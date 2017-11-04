@@ -4,6 +4,26 @@ reg.register('service.nant.task', {
     name: _('NAnt task'),
     icon: '/plugin/cla-nant-plugin/icon/nant.svg',
     form: '/plugin/cla-nant-plugin/form/nant-service-form.js',
+    rulebook: {
+        moniker: 'nant_task',
+        description: _('Executes NAnt commands'),
+        required: [ 'server', 'command', 'path'],
+        allow: ['server', 'command', 'path', 'custom_args', 'user', 'errorType'],
+        mapper: {
+            'server':'nantServer',
+            'custom_args':'custom'
+        },
+        examples: [{
+            nant_task: {
+                server: 'nant_server',
+                user: 'clarive_user',
+                command: 'custom',
+                path: "/projects/ant_project/",
+                custom_args: ['-version'],
+                errorType: "fail"
+            }
+        }]
+    },
     handler: function(ctx, params) {
 
         var reg = require('cla/reg');
@@ -16,6 +36,7 @@ reg.register('service.nant.task', {
         var command = params.command;
         var customParams = params.custom;
         var fullCommand = "";
+        var user = config.user || "";
 
         if (server == "") {
             log.fatal(_("No server selected"));

@@ -11,6 +11,13 @@
         with_vars: 1
     });
 
+    var userTextField = Cla.ui.textField({
+        name: 'user',
+        fieldLabel: _('User'),
+        value: data.user || '',
+        allowBlank: true
+    });
+
     var commandComboBox = Cla.ui.comboBox({
         name: 'command',
         fieldLabel: _('Command'),
@@ -59,6 +66,7 @@
         layout: 'form',
         items: [
             nantServerCombo,
+            userTextField,
             pathText,
             commandComboBox,
             customParams,

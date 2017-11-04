@@ -1,5 +1,6 @@
-
 # NAnt plugin
+
+<img src="https://cdn.rawgit.com/clarive/cla-nant-plugin/master/public/icon/nant.svg?sanitize=true" alt="NAnt Plugin" title="NAnt Plugin" width="120" height="120">
 
 The NAnt plugin will allow you to launch NAnt commands for your .NET projects from a Clarive instance.
 
@@ -14,25 +15,24 @@ NAnt must be installed in order for the plugin to work properly.
 
 ## Installation
 
-To install the plugin, place the `cla-nant-plugin` folder inside the `CLARIVE_BASE/plugins` directory in a Clarive
+To install the plugin, place the `cla-nant-plugin` folder inside the `$CLARIVE_BASE/plugins` directory in a Clarive
 instance.
-
-## How to Use
-
-Once the plugin is correctly installed and the Clarive instance is restarted, you will have a new palette service called
-'NAnt task'.
 
 ### NAnt Task Service
 
 This palette service will allow you to choose the option that you wish to perform with NAnt. The various settings from
 the palette service are:
 
-- **Server** - Server where you wish to execute the code. 
-- **Project path** - Directory for project build file.
-- **Command** - This contains a series of commands that may be launched with the service, as well as allowing you to
+- **Server (variable name: server)** - Server where you wish to execute the code. 
+- **User (user)** - User which will be used to connect to the server.
+- **Project path (path)** - Directory for project build file.
+- **Command (command)** - This contains a series of commands that may be launched with the service, as well as allowing you to
   write a custom one.
-- **Custom command or arguments** - Here you can write arguments for the selected command or write the commands you wish
+- **Custom command or arguments (custom_args)** - Here you can write arguments for the selected command or write the commands you wish
   to perform.
+
+**Only Clarive EE**
+
 - **Errors and output** - These two fields concern management of control errors. They contain the following options:
    - **Fail and output error** - Search for a configured error pattern in script output. If found, an error message is
      displayed in the monitor showing the match.
@@ -45,29 +45,86 @@ the palette service are:
    - **Error** - Range of return code values for the script to have failed. An error message will be displayed in the
      monitor.
 
+## How to use
 
-Configuration example:
+### In Clarive EE
 
+Once the plugin is placed in its folder, you can find this service in the palette in the section of generic service and can be used like any other palette op.
+
+Op Name: **NAnt task**
+
+Example:
+
+```yaml
     Server: NAnt-Server
     Path: /home/nant_project/
     Command: Custom
     Custom command or arguments: clean build run
     Errors: fail
+``` 
+
+### In Clarive SE
+
+#### Rulebook
+
+If you want to use the plugin through the Rulebook, in any `do` block, use this ops as examples to configure the different parameters:
+
+```yaml
+rule: NAnt demo
+do:
+   - nant_task:
+       server: nant_server   # Required. Use the mid set to the resource you created
+       user: ${username}
+       command: "custom"    # Required
+       path: "/projects/ant_project/"   # Required
+       custom_args: ['clean', 'build', 'run']
+```
+
+##### Outputs
+
+###### Success
 
 The service will return the console output for the command.
 
-## Variables:
+```yaml
+do:
+    - nant_task:
+       server: nant_server   # use the mid set to the resource you created
+       user: "clarive_user"
+       command: "custom"
+       path: "/projects/nant_project/"
+       custom_args: ['-help']
+```
 
-In order to use combo or texfield options from some services, you will need to use variables created in the Variable
-Resource from Clarive, which will save repeating the configuration steps.
+For this command the output will be the help for NAnt.
 
-There are different Variable types (value, CI, textarea, array etc.), all of which are available in the Variable
-Resource. The CI type is useful for the CI combos, as you will not be able to manually enter them into the combo,
-whereas you will be able to do so for texfields.
+###### Possible configuration failures
 
-The CI variable should be created with the following settings:
+**Build failed**
 
-- **Type -** CI. 
-- **CI Role -** Select the Role of the CI class you have in the combo. 
-- **CI CLASS -** Select the specific CI Class it will use, usually the same class as the combo where you would like it
-  to appear.
+```yaml
+Buildfile: example.build does not exist!
+Build failed
+```
+
+Make sure that the option is available for NAnt, and also that you set the correct project path and the .build file exist.
+
+**Variable required**
+
+```yaml
+Error in rulebook (compile): Required argument(s) missing for op "nant_task": "command"
+```
+
+Make sure you have all required variables defined.
+
+**Not allowed variable**
+
+```yaml
+Error in rulebook (compile): Argument `Command` not available for op "nant_task"
+```
+
+Make sure you are using the correct paramaters (make sure you are writing the variable names correctly).
+
+## More questions?
+
+Feel free to join **[Clarive Community](https://community.clarive.com/)** to resolve any of your doubts.
