@@ -1,6 +1,6 @@
 # NAnt plugin
 
-<img src="https://cdn.rawgit.com/clarive/cla-nant-plugin/master/public/icon/nant.svg?sanitize=true" alt="NAnt Plugin" title="NAnt Plugin" width="120" height="120">
+<img src="https://cdn.jsdelivr.net/gh/clarive/cla-nant-plugin/public/icon/nant.svg?sanitize=true" alt="NAnt Plugin" title="NAnt Plugin" width="120" height="120">
 
 The NAnt plugin will allow you to launch NAnt commands for your .NET projects from a Clarive instance.
 
